@@ -90,16 +90,16 @@ Clone this repository somewhere on a filesystem, I'd do this right into `$HOME` 
 
 Run (we're still under `oracle` user):
 
-        $ ./backup.sh 0 xe_incr
+    $ ./backup.sh 0 xe_incr
 
 Here 0 is mode (full snapshot) and `xe_incr` is a tag for our backups. It would start backup process and create logfile at `$HOME/fast_recovery_area/xe_backup.log` and about 1.5G of backups under `$HOME/fast_recovery_area/backupset`. Further backups will be much smaller (depending on your workload of course, but if you're using Oracle XE is shouldn't be high).
 
 Add this lines to crontab file (edit it using `crontab -e`):
 
-        #--------------------------------------------------------------------------------------------------
-        #Min     Hour    Day     Month   Weekday Command
-        #--------------------------------------------------------------------------------------------------
-        0        3       *       *       0       cd /path/to/oracle-xe-backup/folder; ./backup.sh 0 xe_incr
-        0        3       *       *       1-6     cd /path/to/oracle-xe-backup/folder; ./backup.sh 1 xe_incr
+    #--------------------------------------------------------------------------------------------------
+    #Min     Hour    Day     Month   Weekday Command
+    #--------------------------------------------------------------------------------------------------
+    0        3       *       *       0       cd /path/to/oracle-xe-backup/folder; ./backup.sh 0 xe_incr
+    0        3       *       *       1-6     cd /path/to/oracle-xe-backup/folder; ./backup.sh 1 xe_incr
 
 This one would run full backup each sunday at 03:00 AM and incremental backups from monday to saturday at 03:00 AM.
